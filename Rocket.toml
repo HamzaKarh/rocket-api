@@ -1,0 +1,9 @@
+[development]
+#PORT = 3000
+DATABASE_URL = 'postgres://rocket:rocket@localhost:1010/rocket'
+
+[development.databases]
+postgres = {url = "postgres://rocket:rocket@localhost:1010/rocket"}
+
+
+[global]

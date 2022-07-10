@@ -1,0 +1,19 @@
+version: "3.1"
+services:
+  postgres:
+    image: postgres:11-alpine
+    restart: always
+    environment:
+        POSTGRES_PASSWORD: rocket
+        POSTGRES_USER: rocket
+        POSTGRES_DB: rocket
+    ports:
+      - 1010:5432
+#      exposing 5432 container port to 1010 real port
+  rocket:
+      image: rocket-api:latest
+      restart: always
+      environment:
+        DATABASE_URL: "postgres://rocket:rocket@localhost/rocket"
+      ports:
+        - 1020:8000
