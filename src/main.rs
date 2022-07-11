@@ -9,16 +9,10 @@ mod db_connect;
 mod files;
 
 use db_connect::*;
-use diesel::prelude::*;
-use dotenv::dotenv;
-use rocket::{self, get, post, routes};
-use std::env;
+use rocket::{self, get, routes};
 
 // use crate::db_connect::establish_connection;
-use crate::files::{File, NewFile};
-use rocket_contrib::databases::{database, diesel::PgConnection};
-use rocket_contrib::json::Json;
-use std::fmt::format;
+use files::{static_rocket_route_info_for_create_file, static_rocket_route_info_for_get_all_files};
 
 // routes is imported from rocket crate
 #[get("/")]
@@ -27,9 +21,9 @@ fn index() -> &'static str {
 }
 
 fn main() {
-    // let connexion = DbConn(establish_connection());
     rocket::ignite()
         .attach(DbConn::fairing())
         .mount("/", routes![index])
+        .mount("/files", routes![create_file, get_all_files])
         .launch();
 }

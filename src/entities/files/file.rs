@@ -5,10 +5,9 @@ use crate::db_connect;
 use crate::schema::files;
 use db_connect::DbConn;
 use diesel::query_dsl::methods::OrderDsl;
-use diesel::{Expression, ExpressionMethods, RunQueryDsl};
+use diesel::{ExpressionMethods, RunQueryDsl};
 use rocket::{self, delete, get, post};
 use rocket_contrib::json::Json;
-// use schema::files;
 use serde_derive::{Deserialize, Serialize};
 
 #[derive(Queryable, Serialize)]
